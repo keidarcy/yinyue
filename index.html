@@ -6,16 +6,104 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Music</title>
     <link rel="stylesheet" href="./styles/style.css" />
+    <script src="https://unpkg.com/eva-icons"></script>
+    <style>
+      h3 {
+        color: pink;
+      }
+      svg [data-icon-path='inner-path'] {
+        fill: blue;
+        opacity: 1;
+      }
+    </style>
   </head>
   <body>
-    <h1>test</h1>
+    <div class="main">
+      <p id="logo"><i data-eva="headphones-outline"></i>Music</p>
+
+      <!--- left part --->
+      <div class="left">
+        <!--- song img --->
+        <img id="track_image" />
+        <div class="volume">
+          <p id="volume_show">90</p>
+          <i
+            data-eva="volume-off-outline"
+            aria-hidden="true"
+            onclick="mute_sound()"
+            id="volume_icon"
+          ></i>
+          <input
+            type="range"
+            min="0"
+            max="100"
+            value="90"
+            onchange="volume_change()"
+            id="volume"
+          />
+        </div>
+      </div>
+
+      <!--- right part --->
+      <div class="right">
+        <div class="show_song_no">
+          <p id="present">1</p>
+          <p>/</p>
+          <p id="total">5</p>
+        </div>
+
+        <!--- song title & artist name --->
+        <p id="title">title.mp3</p>
+        <p id="artist">Artist name</p>
+
+        <!--- middle part --->
+        <div class="middle">
+          <button onclick="previous_song()" id="pre">
+            <i data-eva="skip-back-outline" aria-hidden="true"></i>
+          </button>
+          <button onclick="justplay()" id="play">
+            <i data-eva="play-circle-outline" aria-hidden="true"></i>
+          </button>
+          <button onclick="next_song()" id="next">
+            <i data-eva="skip-forward-outline" aria-hidden="true"></i>
+          </button>
+        </div>
+
+        <!--- song duration part --->
+        <div class="duration">
+          <input
+            type="range"
+            min="0"
+            max="100"
+            value="0"
+            id="duration_slider"
+            onchange="change_duration()"
+          />
+        </div>
+        <button id="auto" onclick="autoplay_switch()">
+          Auto play <i class="fa fa-circle-o-notch" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+    <!-- test -->
+    <h3>test</h3>
     <audio controls autoplay muted src="./dist/1.m4a" type="audio/m4a"></audio>
     <div class="bottom-bar adaptive-glass">
       <button id="play">Play</button>
       <button id="pause">Pause</button>
       <button id="stop">Stop</button>
     </div>
-    <user-card></user-card>
-    <script src="./scripts/script.js"></script>
+
+    <user-card name="jone doe" avatar="https://randomuser.me/api/portraits/men/1.jpg">
+      <div slot="email">john@gmail.com</div>
+      <div slot="phone">555-4444-333</div>
+    </user-card>
+    <i data-eva="github"></i>
+    <user-card name="jane doe" avatar="https://randomuser.me/api/portraits/women/1.jpg">
+      <div slot="email">john@gmail.com</div>
+      <div slot="phone">555-4444-333</div>
+    </user-card>
+    <!-- <script type="module" src="./scripts/script.js"></script> -->
+    <script src="./scripts/play"></script>
   </body>
 </html>
